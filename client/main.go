@@ -28,6 +28,7 @@ func main() {
 
 	//lea de consola todas las líneas que se ingresen, las loguee y, si se ingresa una línea vacía, termine con el programa.
 	reader := bufio.NewReader(os.Stdin) // no uso utils.LeerConsola() porque necesito text
+	log.Println("Ingrese texto: ")
 	text, _ := reader.ReadString('\n')
 	log.Println(text)
 	
@@ -44,7 +45,7 @@ func main() {
 	utils.EnviarMensaje(globals.ClientConfig.Ip, globals.ClientConfig.Puerto, globals.ClientConfig.Mensaje)
 
 	// leer de la consola el mensaje
-	utils.LeerConsola()
+	/* utils.LeerConsola() */
 	log.Println("Enviando mensaje al servidor...")
 
 	// generamos un paquete y lo enviamos al servidor
