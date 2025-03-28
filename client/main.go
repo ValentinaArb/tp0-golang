@@ -4,8 +4,6 @@ import (
 	"client/globals"
 	"client/utils"
 	"log"
- 	"os"
-	"bufio" 
 )
 
 func main() {
@@ -27,17 +25,7 @@ func main() {
 	log.Println("puerto desde config.json:", globals.ClientConfig.Puerto)
 
 	//lea de consola todas las líneas que se ingresen, las loguee y, si se ingresa una línea vacía, termine con el programa.
-	reader := bufio.NewReader(os.Stdin) // no uso utils.LeerConsola() porque necesito text
-	log.Println("Ingrese texto: ")
-	text, _ := reader.ReadString('\n')
-	log.Println(text)
 	
-	for text != "\n" && text != "\r\n" {
-		text, _ = reader.ReadString('\n')
-		log.Println(text)
-	}
-	
-	log.Println("Salida del programa.")
 
 	// ADVERTENCIA: Antes de continuar, tenemos que asegurarnos que el servidor esté corriendo para poder conectarnos a él
 
@@ -48,6 +36,7 @@ func main() {
 	/* utils.LeerConsola() */
 	log.Println("Enviando mensaje al servidor...")
 
+	paquete := utils.LeerConsola()
 	// generamos un paquete y lo enviamos al servidor
-	utils.GenerarYEnviarPaquete()
+	utils.GenerarYEnviarPaquete(paquete, globals.ClientConfig.Ip,globals.ClientConfig.Puerto)
 }
